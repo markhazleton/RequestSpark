@@ -7,9 +7,9 @@
   "fileName": "websparkportal--v1.json",
   "filePath": "C:\\GitHub\\MarkHazleton\\RequestSpark\\RequestSpark.Web\\Data\\openapi\\f488ff03-9f7e-41aa-9a51-09511f914d15_spec.json",
   "fileSize": 42977,
-  "defaultBaseUrl": "https://webspark.markhazleton.com/",
+  "defaultBaseUrl": "https://web.makeboldspark.com/",
   "availableServers": [
-    "https://webspark.markhazleton.com/"
+    "https://web.makeboldspark.com/"
   ],
   "endpointCount": 37,
   "httpMethods": [

@@ -7,7 +7,7 @@
   "fileName": "swagger.json",
   "filePath": "C:\\GitHub\\MarkHazleton\\RequestSpark\\RequestSpark.Web\\Data\\openapi\\e78b9751-5f89-4dbb-ad14-bfcc879e6252_spec.json",
   "fileSize": 13940,
-  "defaultBaseUrl": "https://samplecrud.markhazleton.com/",
+  "defaultBaseUrl": "https://ui.makeboldspark.com/",
   "availableServers": [],
   "endpointCount": 10,
   "httpMethods": [

@@ -9,7 +9,7 @@ public class SampleCRUDService
     public SampleCRUDService(IHttpClientFactory httpClientFactory)
     {
         _client = httpClientFactory.CreateClient();
-        _client.BaseAddress = new Uri("https://samplecrud.markhazleton.com/");
+        _client.BaseAddress = new Uri("https://ui.makeboldspark.com/");
         _client.Timeout = TimeSpan.FromSeconds(15);
         _crudClient = new SampleCRUDClient(_client);
     }
@@ -19,7 +19,7 @@ public class SampleCRUDService
     {
         _client = new HttpClient
         {
-            BaseAddress = new Uri("https://samplecrud.markhazleton.com/"),
+            BaseAddress = new Uri("https://ui.makeboldspark.com/"),
             Timeout = TimeSpan.FromSeconds(15)
         };
         _crudClient = new SampleCRUDClient(_client);

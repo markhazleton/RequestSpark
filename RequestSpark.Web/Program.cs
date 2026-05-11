@@ -129,7 +129,7 @@ builder.Services.AddScoped<CompareRunner>(serviceProvider =>
     runner.Instances = new List<CompareInstance>
     {
         new() { Name = "Local", BaseUrl = "https://localhost:7001/" },
-        new() { Name = "Demo", BaseUrl = "https://samplecrud.markhazleton.com/" }
+        new() { Name = "Demo", BaseUrl = "https://ui.makeboldspark.com/" }
     };
 
     runner.Requests = new List<CompareRequest>
@@ -427,7 +427,7 @@ static async Task InitializeSampleDataAsync(IServiceProvider serviceProvider)
                     Instances = new List<CompareInstance>
                     {
                         new() { Name = "Local", BaseUrl = "https://localhost:44315/" },
-                        new() { Name = "Demo", BaseUrl = "https://samplecrud.markhazleton.com/" }
+                        new() { Name = "Demo", BaseUrl = "https://ui.makeboldspark.com/" }
                     },
 
                     // Set up users (matching console app pattern)

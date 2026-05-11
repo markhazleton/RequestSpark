@@ -6,7 +6,18 @@
 [![GitHub Stars](https://img.shields.io/github/stars/markhazleton/RequestSpark)](https://github.com/markhazleton/RequestSpark/stargazers)
 [![Release](https://img.shields.io/github/v/release/markhazleton/RequestSpark)](https://github.com/markhazleton/RequestSpark/releases/latest)
 
+**Live Site**: [https://request.makeboldspark.com](https://request.makeboldspark.com)
+
 A comprehensive .NET 10 solution for running REST API tests, performance benchmarking, and regression testing using Postman collections.
+
+## About
+
+RequestSpark is a .NET 10 web application and console tool for running REST API tests, performance benchmarking, and regression testing against Postman collections. It provides a browser-based dashboard for managing API configurations, executing test runs, and reviewing results — with built-in support for load testing, OpenAPI specs, and CSV exports.
+
+The live instance is hosted at [https://request.makeboldspark.com](https://request.makeboldspark.com).
+
+> Built by [Mark Hazleton](https://markhazleton.com) — Mark Hazleton, Solutions Architect
+> RequestSpark is part of the [Make Bold Spark](https://makeboldspark.com) portfolio of technical demonstrations.
 
 > **Latest Update** (v10.0.0): Upgraded to .NET 10.0 (LTS) with 19% faster builds, 25% faster tests, and comprehensive package optimization!
 

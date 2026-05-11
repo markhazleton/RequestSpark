@@ -9,7 +9,7 @@ public static class CompareRunner_Extensions
     {
         return
             [
-                new() {Name="MH", BaseUrl="https://samplecrud.markhazleton.com/"},
+                new() {Name="MH", BaseUrl="https://ui.makeboldspark.com/"},
                 new() {Name="AZ", BaseUrl="https://samplecrud.azurewebsites.net/"}
             ];
     }

@@ -474,7 +474,7 @@ namespace RequestSpark.Web.Controllers
                 : new List<CompareInstance>
                 {
                     new() { Name = "Local", BaseUrl = "https://localhost:44315/" },
-                    new() { Name = "Demo", BaseUrl = "https://samplecrud.markhazleton.com/" }
+                    new() { Name = "Demo", BaseUrl = "https://ui.makeboldspark.com/" }
                 };
 
             var users = configuration.Runner.Users?.Any() == true

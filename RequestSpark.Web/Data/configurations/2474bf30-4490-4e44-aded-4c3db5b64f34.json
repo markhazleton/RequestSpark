@@ -5,7 +5,7 @@
   "runner": {
     "instances": [
       {
-        "baseUrl": "https://samplecrud.markhazleton.com/",
+        "baseUrl": "https://ui.makeboldspark.com/",
         "name": "Production",
         "userToken": null,
         "clientToken": null,
