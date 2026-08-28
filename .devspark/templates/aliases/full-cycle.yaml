@@ -1,0 +1,8 @@
+id: full-cycle
+target_workflow: full-cycle
+description: >
+  Single entrypoint for the entire unattended lifecycle: specify -> plan ->
+  tasks -> critic -> analyze -> gate remediation -> implement -> create-pr ->
+  pr-review. Requires --hands-off (and a write-capable non-interactive
+  adapter) since the workflow declares autonomy.level: autonomous with no
+  mandatory pauses.

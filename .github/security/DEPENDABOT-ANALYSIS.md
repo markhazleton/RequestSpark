@@ -258,7 +258,7 @@ gh pr create --title "Fix npm security vulnerabilities" \
 After applying fixes:
 
 1. **Check Dependabot**:
- - Visit: https://github.com/markhazleton/RequestSpark/security/dependabot
+ - Visit: https://github.com/MakeBoldSolutions/RequestSpark/security/dependabot
  - Verify alerts auto-close after merge
 
 2. **Run npm audit**:
@@ -467,6 +467,6 @@ gh pr create --title "Fix npm security vulnerabilities" --body "Fixes Dependabot
 ---
 
 **Generated**: 2025-12-23 
-**Repository**: https://github.com/markhazleton/RequestSpark 
-**Dependabot**: https://github.com/markhazleton/RequestSpark/security/dependabot
+**Repository**: https://github.com/MakeBoldSolutions/RequestSpark 
+**Dependabot**: https://github.com/MakeBoldSolutions/RequestSpark/security/dependabot
 

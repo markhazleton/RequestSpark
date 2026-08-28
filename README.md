@@ -1,10 +1,10 @@
 # RequestSpark
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/10.0)
-[![License](https://img.shields.io/github/license/markhazleton/RequestSpark)](https://github.com/markhazleton/RequestSpark/blob/main/LICENSE)
-[![GitHub Issues](https://img.shields.io/github/issues/markhazleton/RequestSpark)](https://github.com/markhazleton/RequestSpark/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/markhazleton/RequestSpark)](https://github.com/markhazleton/RequestSpark/stargazers)
-[![Release](https://img.shields.io/github/v/release/markhazleton/RequestSpark)](https://github.com/markhazleton/RequestSpark/releases/latest)
+[![License](https://img.shields.io/github/license/MakeBoldSolutions/RequestSpark)](https://github.com/MakeBoldSolutions/RequestSpark/blob/main/LICENSE)
+[![GitHub Issues](https://img.shields.io/github/issues/MakeBoldSolutions/RequestSpark)](https://github.com/MakeBoldSolutions/RequestSpark/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/MakeBoldSolutions/RequestSpark)](https://github.com/MakeBoldSolutions/RequestSpark/stargazers)
+[![Release](https://img.shields.io/github/v/release/MakeBoldSolutions/RequestSpark)](https://github.com/MakeBoldSolutions/RequestSpark/releases/latest)
 
 **Live Site**: [https://request.makeboldspark.com](https://request.makeboldspark.com)
 
@@ -66,7 +66,7 @@ RequestSpark uses **.NET 10.0 (LTS)** for:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/markhazleton/RequestSpark.git
+git clone https://github.com/MakeBoldSolutions/RequestSpark.git
 cd RequestSpark
 ```
 
@@ -164,7 +164,7 @@ For detailed upgrade information, see [Upgrade Documentation](.github/upgrades/u
 - Added comprehensive upgrade documentation in `.github/upgrades/`
 - Created GitHub issues for future improvements (#2, #3)
 
-See [CHANGELOG.md](https://github.com/markhazleton/RequestSpark/blob/main/CHANGELOG.md) for complete version history.
+See [CHANGELOG.md](https://github.com/MakeBoldSolutions/RequestSpark/blob/main/CHANGELOG.md) for complete version history.
 
 ## Migration Guide
 

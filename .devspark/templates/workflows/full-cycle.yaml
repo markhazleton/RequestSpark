@@ -1,0 +1,44 @@
+id: full-cycle
+name: Full Cycle
+description: >
+  Unattended lifecycle: specify -> plan -> tasks -> critic -> analyze ->
+  gate remediation -> implement -> create-pr -> pr-review. No mandatory
+  pauses; guardrails (file/line/path limits) are the safety boundary instead.
+output_type: pull-request
+autonomy:
+  level: autonomous
+  guardrails:
+    max_files_changed: 50
+    restricted_paths:
+      - ".github/workflows/**"
+      - ".devspark/**"
+      - ".documentation/memory/constitution.md"
+    max_total_lines_changed: 2000
+steps:
+  - id: specify
+    prompt: specify
+    on_failure: abort
+  - id: plan
+    prompt: plan
+    on_failure: abort
+  - id: generate-tasks
+    prompt: tasks
+    on_failure: abort
+  - id: critic
+    prompt: critic
+    on_failure: abort
+  - id: analyze
+    prompt: analyze
+    on_failure: abort
+  - id: remediate-gates
+    prompt: tasks
+    on_failure: abort
+  - id: implement
+    prompt: implement
+    on_failure: abort
+  - id: create-pr
+    prompt: create-pr
+    on_failure: abort
+  - id: review-pr
+    prompt: pr-review
+    on_failure: abort

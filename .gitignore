@@ -360,3 +360,6 @@ Thumbs.db
 
 # Runtime execution results (generated at test-run time)
 RequestSpark.Web/Data/results/
+
+# DevSpark - personal overrides (never commit)
+.documentation/*/commands/

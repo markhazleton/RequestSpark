@@ -95,7 +95,7 @@ git push origin main # Deployed to GitHub
 - **Within hours**: Dependabot rescans and auto-closes alerts
 
 **To verify alerts closed**:
-1. Visit: https://github.com/markhazleton/RequestSpark/security/dependabot
+1. Visit: https://github.com/MakeBoldSolutions/RequestSpark/security/dependabot
 2. Alerts #7 and #5 should show as "Fixed" or auto-close
 3. If not closed within 24 hours, manually dismiss with reason "Already fixed in 6463048"
 
@@ -180,7 +180,7 @@ git push origin main # Deployed to GitHub
 ### Manual Verification
 If alerts don't auto-close within 24 hours:
 
-1. Go to: https://github.com/markhazleton/RequestSpark/security/dependabot/7
+1. Go to: https://github.com/MakeBoldSolutions/RequestSpark/security/dependabot/7
 2. Click "Dismiss alert"
 3. Reason: "Already fixed in 6463048"
 4. Repeat for alert #5

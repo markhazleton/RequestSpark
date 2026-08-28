@@ -138,9 +138,9 @@ To:
 
 ## Live on GitHub
 
-**README.md URL**: https://github.com/markhazleton/RequestSpark/blob/main/README.md
+**README.md URL**: https://github.com/MakeBoldSolutions/RequestSpark/blob/main/README.md
 
-**Commit**: https://github.com/markhazleton/RequestSpark/commit/14e7f38
+**Commit**: https://github.com/MakeBoldSolutions/RequestSpark/commit/14e7f38
 
 ---
 
