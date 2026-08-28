@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: npm
+          cache-dependency-path: RequestSpark.Web/package-lock.json
+
+      - name: Install web asset dependencies
+        working-directory: RequestSpark.Web
+        run: npm ci
+
+      - name: Lint web assets
+        working-directory: RequestSpark.Web
+        run: npm run lint
+
+      - name: Build web assets
+        working-directory: RequestSpark.Web
+        run: npm run build
+
+      - name: Restore
+        run: dotnet restore RequestSpark.sln
+
+      - name: Build
+        run: dotnet build RequestSpark.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test RequestSpark.sln --configuration Release --no-build --verbosity normal
