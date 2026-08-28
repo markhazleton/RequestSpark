@@ -2,9 +2,15 @@ using Moq;
 
 namespace RequestSpark.Web.Tests.Controllers;
 
+/// <summary>
+/// Tests for <see cref="ExecutionController"/> API actions.
+/// </summary>
 [TestClass]
 public class ExecutionControllerTests
 {
+        /// <summary>
+    /// Verifies that starting an execution without a configuration ID returns a bad request.
+    /// </summary>
     [TestMethod]
     public async Task StartExecution_WithoutConfigurationId_ReturnsBadRequest()
     {
@@ -15,6 +21,9 @@ public class ExecutionControllerTests
         Assert.IsInstanceOfType<BadRequestObjectResult>(result.Result);
     }
 
+        /// <summary>
+    /// Verifies that starting an execution for an unknown configuration returns not found.
+    /// </summary>
     [TestMethod]
     public async Task StartExecution_WithUnknownConfiguration_ReturnsNotFound()
     {
@@ -28,6 +37,9 @@ public class ExecutionControllerTests
         Assert.IsInstanceOfType<NotFoundObjectResult>(result.Result);
     }
 
+        /// <summary>
+    /// Verifies that starting an execution with a valid configuration returns a created result.
+    /// </summary>
     [TestMethod]
     public async Task StartExecution_WithValidRequest_ReturnsCreatedAtAction()
     {

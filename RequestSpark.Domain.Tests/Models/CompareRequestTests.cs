@@ -1,9 +1,15 @@
 
 namespace RequestSpark.Domain.Tests.Models;
 
+/// <summary>
+/// Tests for <see cref="CompareRequest"/> defaults, validation, and HTTP body rules.
+/// </summary>
 [TestClass]
 public class CompareRequestTests
 {
+        /// <summary>
+    /// Verifies that the default constructor initializes expected default values.
+    /// </summary>
     [TestMethod]
     public void CompareRequest_DefaultConstructor_CreatesInstance()
     {
@@ -15,6 +21,9 @@ public class CompareRequestTests
         Assert.IsFalse(request.RequiresClientToken);
     }
 
+        /// <summary>
+    /// Verifies that request paths are trimmed before storage.
+    /// </summary>
     [TestMethod]
     public void CompareRequest_Path_TrimsWhitespace()
     {
@@ -23,6 +32,9 @@ public class CompareRequestTests
         Assert.AreEqual("api/test", request.Path);
     }
 
+        /// <summary>
+    /// Verifies that whitespace-only paths are stored as null.
+    /// </summary>
     [TestMethod]
     public void CompareRequest_Path_WhitespaceOnly_StoresNull()
     {
@@ -31,6 +43,9 @@ public class CompareRequestTests
         Assert.IsNull(request.Path);
     }
 
+        /// <summary>
+    /// Verifies that a request with a valid path is valid.
+    /// </summary>
     [TestMethod]
     public void IsValid_WithValidPath_ReturnsTrue()
     {
@@ -39,6 +54,9 @@ public class CompareRequestTests
         Assert.IsTrue(request.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that a request without a path is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_WithNullPath_ReturnsFalse()
     {
@@ -47,6 +65,9 @@ public class CompareRequestTests
         Assert.IsFalse(request.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that an overlong request path is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_PathExceedsMaxLength_ReturnsFalse()
     {
@@ -55,6 +76,9 @@ public class CompareRequestTests
         Assert.IsFalse(request.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that POST requests require a body.
+    /// </summary>
     [TestMethod]
     public void RequiresBody_PostMethod_ReturnsTrue()
     {
@@ -63,6 +87,9 @@ public class CompareRequestTests
         Assert.IsTrue(request.RequiresBody());
     }
 
+        /// <summary>
+    /// Verifies that PUT requests require a body.
+    /// </summary>
     [TestMethod]
     public void RequiresBody_PutMethod_ReturnsTrue()
     {
@@ -71,6 +98,9 @@ public class CompareRequestTests
         Assert.IsTrue(request.RequiresBody());
     }
 
+        /// <summary>
+    /// Verifies that PATCH requests require a body.
+    /// </summary>
     [TestMethod]
     public void RequiresBody_PatchMethod_ReturnsTrue()
     {
@@ -79,6 +109,9 @@ public class CompareRequestTests
         Assert.IsTrue(request.RequiresBody());
     }
 
+        /// <summary>
+    /// Verifies that GET requests do not require a body.
+    /// </summary>
     [TestMethod]
     public void RequiresBody_GetMethod_ReturnsFalse()
     {
@@ -87,6 +120,9 @@ public class CompareRequestTests
         Assert.IsFalse(request.RequiresBody());
     }
 
+        /// <summary>
+    /// Verifies that DELETE requests do not require a body.
+    /// </summary>
     [TestMethod]
     public void RequiresBody_DeleteMethod_ReturnsFalse()
     {

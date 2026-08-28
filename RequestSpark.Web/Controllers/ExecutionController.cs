@@ -130,6 +130,7 @@ public partial class ExecutionController : Controller
     [ProducesResponseType(typeof(TestExecution), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<TestExecution>> StartExecution([FromBody] StartExecutionRequest request)
     {
         try
@@ -240,7 +241,7 @@ public partial class ExecutionController : Controller
     /// <returns>Cancellation result</returns>
     [HttpPost("/api/execution/{executionId}/cancel")]
     [Produces("application/json")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(CancelExecutionResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CancelExecution(string executionId, [FromBody] CancelExecutionRequest request)
@@ -271,7 +272,11 @@ public partial class ExecutionController : Controller
         }
 
         _logger.LogInformation("Cancelled execution {ExecutionId} via API", executionId);
-        return Ok(new { message = "Execution cancelled successfully", executionId });
+        return Ok(new CancelExecutionResponse
+        {
+            Message = "Execution cancelled successfully",
+            ExecutionId = executionId
+        });
     }
 
     /// <summary>

@@ -1,8 +1,14 @@
 namespace RequestSpark.Domain.Tests.Models;
 
+/// <summary>
+/// Tests for <see cref="CompareProperty"/> construction behavior.
+/// </summary>
 [TestClass]
 public class ComparePropertyTests
 {
+        /// <summary>
+    /// Verifies that the constructor stores every supplied property value.
+    /// </summary>
     [TestMethod]
     public void CompareProperty_Constructor_SetsAllProperties()
     {
@@ -15,6 +21,9 @@ public class ComparePropertyTests
         Assert.AreEqual("A description", prop.Description);
     }
 
+        /// <summary>
+    /// Verifies that an omitted description defaults to an empty string.
+    /// </summary>
     [TestMethod]
     public void CompareProperty_Constructor_NullDescription_DefaultsToEmpty()
     {
@@ -23,6 +32,9 @@ public class ComparePropertyTests
         Assert.AreEqual(string.Empty, prop.Description);
     }
 
+        /// <summary>
+    /// Verifies that a null key is rejected by the constructor.
+    /// </summary>
     [TestMethod]
     public void CompareProperty_Constructor_NullKey_ThrowsArgumentNullException()
     {
@@ -34,6 +46,9 @@ public class ComparePropertyTests
         catch (ArgumentNullException) { }
     }
 
+        /// <summary>
+    /// Verifies that a null value is rejected by the constructor.
+    /// </summary>
     [TestMethod]
     public void CompareProperty_Constructor_NullValue_ThrowsArgumentNullException()
     {
@@ -45,6 +60,9 @@ public class ComparePropertyTests
         catch (ArgumentNullException) { }
     }
 
+        /// <summary>
+    /// Verifies that a null type is rejected by the constructor.
+    /// </summary>
     [TestMethod]
     public void CompareProperty_Constructor_NullType_ThrowsArgumentNullException()
     {
@@ -56,6 +74,9 @@ public class ComparePropertyTests
         catch (ArgumentNullException) { }
     }
 
+        /// <summary>
+    /// Verifies that a null display name is rejected by the constructor.
+    /// </summary>
     [TestMethod]
     public void CompareProperty_Constructor_NullName_ThrowsArgumentNullException()
     {

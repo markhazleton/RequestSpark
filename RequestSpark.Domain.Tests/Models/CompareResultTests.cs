@@ -1,8 +1,14 @@
 namespace RequestSpark.Domain.Tests.Models
 {
+        /// <summary>
+    /// Tests for <see cref="CompareResult"/> defaults, formatting, and error classification.
+    /// </summary>
     [TestClass]
     public class CompareResultTests
     {
+                /// <summary>
+        /// Verifies that object initializer values are stored on the result.
+        /// </summary>
         [TestMethod]
         public void CompareResult_Constructor_SetsProperties()
         {
@@ -32,6 +38,9 @@ namespace RequestSpark.Domain.Tests.Models
             Assert.AreEqual("testuser", result.UserName);
         }
 
+                /// <summary>
+        /// Verifies that a successful result without a status description is not an error.
+        /// </summary>
         [TestMethod]
         public void IsError_SuccessWithNoStatusDescription_ReturnsFalse()
         {
@@ -40,6 +49,9 @@ namespace RequestSpark.Domain.Tests.Models
             Assert.IsFalse(result.IsError);
         }
 
+                /// <summary>
+        /// Verifies that an unsuccessful result is classified as an error.
+        /// </summary>
         [TestMethod]
         public void IsError_NotSuccessful_ReturnsTrue()
         {
@@ -48,6 +60,9 @@ namespace RequestSpark.Domain.Tests.Models
             Assert.IsTrue(result.IsError);
         }
 
+                /// <summary>
+        /// Verifies that a successful result with a status description is classified as an error.
+        /// </summary>
         [TestMethod]
         public void IsError_SuccessWithStatusDescription_ReturnsTrue()
         {
@@ -57,6 +72,9 @@ namespace RequestSpark.Domain.Tests.Models
             Assert.IsTrue(result.IsError);
         }
 
+                /// <summary>
+        /// Verifies that successful result text includes core request details.
+        /// </summary>
         [TestMethod]
         public void ToString_SuccessfulResult_ContainsSuccessAndMethod()
         {
@@ -78,6 +96,9 @@ namespace RequestSpark.Domain.Tests.Models
             Assert.IsTrue(text.Contains("42ms"));
         }
 
+                /// <summary>
+        /// Verifies that failed result text contains the failed status marker.
+        /// </summary>
         [TestMethod]
         public void ToString_FailedResult_ContainsFailed()
         {
@@ -86,6 +107,9 @@ namespace RequestSpark.Domain.Tests.Models
             Assert.IsTrue(result.ToString().Contains("FAILED"));
         }
 
+                /// <summary>
+        /// Verifies that a new result defaults to a recent UTC run date.
+        /// </summary>
         [TestMethod]
         public void LastRunDate_DefaultsToRecentUtcTime()
         {

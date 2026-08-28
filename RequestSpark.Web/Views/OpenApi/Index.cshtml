@@ -134,9 +134,10 @@
                                 <h6 class="mb-1">Obtain your OpenAPI specification file</h6>
                                 <p class="text-muted small mb-0">
                                     Most modern APIs publish their spec automatically.
-                                    Look for a <code>/swagger.json</code>, <code>/openapi.json</code>, or <code>/api-docs</code>
-                                    endpoint on your API server. ASP.NET Core apps expose theirs at
-                                    <code>/swagger/v1/swagger.json</code> when Swagger is enabled.
+                                    Look for a <code>/openapi/v1.json</code>, <code>/openapi.json</code>, or <code>/api-docs</code>
+                                    endpoint on your API server. ASP.NET Core apps using built-in OpenAPI expose
+                                    <code>/openapi/v1.json</code>; older Swagger-enabled apps often use
+                                    <code>/swagger/v1/swagger.json</code>.
                                     You can also export from Postman (Collection &rarr; Export &rarr; OpenAPI 3.0)
                                     or hand-write one using any text editor.
                                 </p>

@@ -2,9 +2,15 @@ using Moq;
 
 namespace RequestSpark.Web.Tests.Controllers;
 
+/// <summary>
+/// Tests for <see cref="OpenApiController"/> upload actions.
+/// </summary>
 [TestClass]
 public class OpenApiControllerTests
 {
+        /// <summary>
+    /// Verifies that the upload GET action returns an upload view model.
+    /// </summary>
     [TestMethod]
     public void Upload_Get_ReturnsUploadViewModel()
     {
@@ -16,6 +22,9 @@ public class OpenApiControllerTests
         Assert.IsInstanceOfType<OpenApiUploadViewModel>(result.Model);
     }
 
+        /// <summary>
+    /// Verifies that an invalid upload POST redisplays the upload view.
+    /// </summary>
     [TestMethod]
     public async Task Upload_PostInvalidModelState_ReturnsView()
     {

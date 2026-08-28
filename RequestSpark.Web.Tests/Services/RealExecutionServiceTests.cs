@@ -6,9 +6,15 @@ using RequestSpark.Web.Hubs;
 
 namespace RequestSpark.Web.Tests.Services;
 
+/// <summary>
+/// Tests for <see cref="RealExecutionService"/> validation and delegated operations.
+/// </summary>
 [TestClass]
 public class RealExecutionServiceTests
 {
+        /// <summary>
+    /// Verifies that starting an execution fails when the configuration is missing.
+    /// </summary>
     [TestMethod]
     public async Task StartExecutionAsync_WhenConfigurationIsMissing_ThrowsInvalidOperationException()
     {
@@ -22,6 +28,9 @@ public class RealExecutionServiceTests
         Assert.AreEqual("Configuration missing not found", exception.Message);
     }
 
+        /// <summary>
+    /// Verifies that starting an execution fails when the configuration is invalid.
+    /// </summary>
     [TestMethod]
     public async Task StartExecutionAsync_WhenConfigurationIsInvalid_ThrowsInvalidOperationException()
     {
@@ -42,6 +51,9 @@ public class RealExecutionServiceTests
         Assert.AreEqual("Configuration is not valid", exception.Message);
     }
 
+        /// <summary>
+    /// Verifies that history lookup by ID delegates to the history store.
+    /// </summary>
     [TestMethod]
     public async Task GetExecutionHistoryAsync_ById_DelegatesToHistoryStore()
     {
@@ -57,6 +69,9 @@ public class RealExecutionServiceTests
         historyStore.Verify(store => store.GetAsync("exec-1", It.IsAny<CancellationToken>()), Times.Once);
     }
 
+        /// <summary>
+    /// Verifies that deleting execution history delegates to the history store.
+    /// </summary>
     [TestMethod]
     public async Task DeleteExecutionHistoryAsync_DelegatesToHistoryStore()
     {
@@ -71,6 +86,9 @@ public class RealExecutionServiceTests
         historyStore.Verify(store => store.DeleteAsync("exec-2", It.IsAny<CancellationToken>()), Times.Once);
     }
 
+        /// <summary>
+    /// Verifies that aggregated statistics lookup delegates to the history store.
+    /// </summary>
     [TestMethod]
     public async Task GetAggregatedStatisticsAsync_DelegatesToHistoryStore()
     {
@@ -87,6 +105,9 @@ public class RealExecutionServiceTests
         Assert.AreSame(expected, actual);
     }
 
+        /// <summary>
+    /// Verifies that cancelling an unknown execution returns false.
+    /// </summary>
     [TestMethod]
     public async Task CancelExecutionAsync_WhenExecutionDoesNotExist_ReturnsFalse()
     {

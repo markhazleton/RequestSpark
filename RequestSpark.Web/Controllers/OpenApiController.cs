@@ -327,52 +327,41 @@ public class OpenApiController : Controller
     /// <param name="specId">Specification identifier.</param>
     /// <returns>A JSON payload describing available servers, security schemes, and endpoints.</returns>
     [HttpGet("/api/openapi/{specId}/endpoints")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(OpenApiEndpointsResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetEndpoints(string specId)
     {
         try
         {
             var structure = await _openApiService.GetStructureAsync(specId);
-            if (structure is null) return NotFound();
-
-            var endpoints = structure.AllEndpoints.Select(e => new
+            if (structure is null)
             {
-                path = e.Path,
-                method = e.Method,
-                operationId = e.OperationId,
-                summary = e.Summary,
-                description = e.Description,
-                tags = e.Tags,
-                isDeprecated = e.IsDeprecated,
-                parameters = e.Parameters.Select(p => new
+                return NotFound(new ProblemDetails
                 {
-                    name = p.Name,
-                    @in = p.In,
-                    required = p.Required,
-                    type = p.Type,
-                    format = p.Format,
-                    description = p.Description,
-                    defaultValue = p.DefaultValue,
-                    example = p.Example,
-                    enumValues = p.EnumValues
-                }),
-                requestBody = e.RequestBody is null ? null : new
-                {
-                    description = e.RequestBody.Description,
-                    required = e.RequestBody.Required,
-                    contentType = e.RequestBody.ContentType,
-                    exampleJson = e.RequestBody.ExampleJson,
-                    schemaJson = e.RequestBody.SchemaJson
-                },
-                responses = e.Responses,
-                securityRequirements = e.SecurityRequirements
-            });
+                    Title = "Specification Not Found",
+                    Detail = $"OpenAPI specification with ID '{specId}' was not found.",
+                    Status = StatusCodes.Status404NotFound
+                });
+            }
 
-            return Ok(new { servers = structure.Servers, securitySchemes = structure.SecuritySchemes, endpoints });
+            return Ok(new OpenApiEndpointsResponse
+            {
+                Servers = structure.Servers,
+                SecuritySchemes = structure.SecuritySchemes,
+                Endpoints = structure.AllEndpoints
+            });
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error getting endpoints for spec {SpecId}", specId);
-            return StatusCode(500, new { error = ex.Message });
+            return StatusCode(StatusCodes.Status500InternalServerError, new ProblemDetails
+            {
+                Title = "Endpoint Discovery Failed",
+                Detail = ex.Message,
+                Status = StatusCodes.Status500InternalServerError
+            });
         }
     }
 
@@ -385,6 +374,10 @@ public class OpenApiController : Controller
     /// <param name="request">Endpoint execution request payload.</param>
     /// <returns>A JSON result containing request timing, response payload, and headers.</returns>
     [HttpPost("/api/openapi/{specId}/execute")]
+    [Produces("application/json")]
+    [ProducesResponseType(typeof(OpenApiEndpointExecuteResult), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> ExecuteEndpoint(string specId, [FromBody] OpenApiEndpointExecuteRequest request)
     {
         var sw = Stopwatch.StartNew();
@@ -393,7 +386,15 @@ public class OpenApiController : Controller
         {
             // Validate spec exists
             var spec = await _openApiService.GetByIdAsync(specId);
-            if (spec is null) return NotFound(new { error = "Spec not found" });
+            if (spec is null)
+            {
+                return NotFound(new ProblemDetails
+                {
+                    Title = "Specification Not Found",
+                    Detail = $"OpenAPI specification with ID '{specId}' was not found.",
+                    Status = StatusCodes.Status404NotFound
+                });
+            }
 
             // Build URL
             var baseUrl = request.BaseUrl.TrimEnd('/');
@@ -501,7 +502,12 @@ public class OpenApiController : Controller
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error executing endpoint for spec {SpecId}", specId);
-            return StatusCode(500, new { error = ex.Message });
+            return StatusCode(StatusCodes.Status500InternalServerError, new ProblemDetails
+            {
+                Title = "Endpoint Execution Failed",
+                Detail = ex.Message,
+                Status = StatusCodes.Status500InternalServerError
+            });
         }
     }
 }

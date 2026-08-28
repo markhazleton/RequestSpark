@@ -4,9 +4,15 @@ using Moq;
 
 namespace RequestSpark.Web.Tests.Services;
 
+/// <summary>
+/// Tests for <see cref="ExecutionHistoryStore"/> persistence, caching, deletion, and aggregation.
+/// </summary>
 [TestClass]
 public class ExecutionHistoryStoreTests
 {
+        /// <summary>
+    /// Verifies that saving history persists the record and caches it.
+    /// </summary>
     [TestMethod]
     public async Task SaveAsync_PersistsHistory_AndCachesRecord()
     {
@@ -27,6 +33,9 @@ public class ExecutionHistoryStoreTests
         fileStorage.Verify(storage => storage.ReadFileAsync(It.IsAny<string>()), Times.Never);
     }
 
+        /// <summary>
+    /// Verifies that history is loaded from storage when it is not already cached.
+    /// </summary>
     [TestMethod]
     public async Task GetAsync_LoadsHistoryFromStorage_WhenCacheMisses()
     {
@@ -50,6 +59,9 @@ public class ExecutionHistoryStoreTests
         fileStorage.Verify(storage => storage.ReadFileAsync("c:\\logs\\history_exec-2.json"), Times.Once);
     }
 
+        /// <summary>
+    /// Verifies that deleting history removes associated result and log files.
+    /// </summary>
     [TestMethod]
     public async Task DeleteAsync_RemovesAssociatedFiles_WhenHistoryExists()
     {
@@ -90,6 +102,9 @@ public class ExecutionHistoryStoreTests
         }
     }
 
+        /// <summary>
+    /// Verifies that aggregation sums matching execution history statistics.
+    /// </summary>
     [TestMethod]
     public async Task GetAggregatedStatisticsAsync_SumsMatchingExecutionHistory()
     {

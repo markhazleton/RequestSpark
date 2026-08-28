@@ -1,8 +1,14 @@
 namespace RequestSpark.Domain.Tests.Models;
 
+/// <summary>
+/// Tests for <see cref="ExecutionStatistics"/> counters, timing, and derived metrics.
+/// </summary>
 [TestClass]
 public class ExecutionStatisticsTests
 {
+        /// <summary>
+    /// Verifies that a new statistics instance starts with zeroed counters.
+    /// </summary>
     [TestMethod]
     public void ExecutionStatistics_DefaultState_HasZeroCounters()
     {
@@ -15,6 +21,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(0, stats.MaxResponseTime);
     }
 
+        /// <summary>
+    /// Verifies that total request increments update the total counter.
+    /// </summary>
     [TestMethod]
     public void IncrementTotalRequests_IncrementsCounter()
     {
@@ -26,6 +35,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(2, stats.TotalRequests);
     }
 
+        /// <summary>
+    /// Verifies that successful request increments update the success counter.
+    /// </summary>
     [TestMethod]
     public void IncrementSuccessfulRequests_IncrementsCounter()
     {
@@ -36,6 +48,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(1, stats.SuccessfulRequests);
     }
 
+        /// <summary>
+    /// Verifies that failed request increments update the failure counter.
+    /// </summary>
     [TestMethod]
     public void IncrementFailedRequests_IncrementsCounter()
     {
@@ -46,6 +61,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(1, stats.FailedRequests);
     }
 
+        /// <summary>
+    /// Verifies that response times update minimum and maximum values.
+    /// </summary>
     [TestMethod]
     public void AddResponseTime_UpdatesMinAndMax()
     {
@@ -59,6 +77,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(200, stats.MaxResponseTime);
     }
 
+        /// <summary>
+    /// Verifies that current average response time is calculated from recorded timings.
+    /// </summary>
     [TestMethod]
     public void CurrentAverageResponseTime_ReturnsCorrectAverage()
     {
@@ -71,6 +92,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(150.0, stats.CurrentAverageResponseTime, 0.001);
     }
 
+        /// <summary>
+    /// Verifies that current average response time is zero when no requests exist.
+    /// </summary>
     [TestMethod]
     public void CurrentAverageResponseTime_WithNoRequests_ReturnsZero()
     {
@@ -79,6 +103,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(0.0, stats.CurrentAverageResponseTime, 0.001);
     }
 
+        /// <summary>
+    /// Verifies that success rate is calculated from mixed successful and failed results.
+    /// </summary>
     [TestMethod]
     public void SuccessRate_WithMixedResults_ReturnsCorrectPercentage()
     {
@@ -94,6 +121,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(75.0, stats.SuccessRate, 0.001);
     }
 
+        /// <summary>
+    /// Verifies that success rate is zero when no requests exist.
+    /// </summary>
     [TestMethod]
     public void SuccessRate_WithNoRequests_ReturnsZero()
     {
@@ -102,6 +132,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(0.0, stats.SuccessRate, 0.001);
     }
 
+        /// <summary>
+    /// Verifies that response time percentiles return expected values.
+    /// </summary>
     [TestMethod]
     public void GetResponseTimePercentile_ReturnsCorrectValue()
     {
@@ -113,6 +146,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(100, stats.GetResponseTimePercentile(100));
     }
 
+        /// <summary>
+    /// Verifies that response time percentiles return zero when no timings exist.
+    /// </summary>
     [TestMethod]
     public void GetResponseTimePercentile_EmptyCollection_ReturnsZero()
     {
@@ -121,6 +157,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(0, stats.GetResponseTimePercentile(50));
     }
 
+        /// <summary>
+    /// Verifies that percentiles above 100 are rejected.
+    /// </summary>
     [TestMethod]
     public void GetResponseTimePercentile_PercentileAbove100_ThrowsArgumentOutOfRangeException()
     {
@@ -133,6 +172,9 @@ public class ExecutionStatisticsTests
         catch (ArgumentOutOfRangeException) { }
     }
 
+        /// <summary>
+    /// Verifies that negative percentiles are rejected.
+    /// </summary>
     [TestMethod]
     public void GetResponseTimePercentile_NegativePercentile_ThrowsArgumentOutOfRangeException()
     {
@@ -145,6 +187,9 @@ public class ExecutionStatisticsTests
         catch (ArgumentOutOfRangeException) { }
     }
 
+        /// <summary>
+    /// Verifies that finalization sets the average response time.
+    /// </summary>
     [TestMethod]
     public void FinalizeStatistics_SetsAverageResponseTime()
     {
@@ -157,6 +202,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(150.0, stats.AverageResponseTime, 0.001);
     }
 
+        /// <summary>
+    /// Verifies that finalization sets an end timestamp.
+    /// </summary>
     [TestMethod]
     public void FinalizeStatistics_SetsEndTime()
     {
@@ -168,6 +216,9 @@ public class ExecutionStatisticsTests
         Assert.IsTrue(stats.EndTime >= before);
     }
 
+        /// <summary>
+    /// Verifies that total duration is calculated from start and end times.
+    /// </summary>
     [TestMethod]
     public void TotalDuration_ReturnsEndMinusStart()
     {
@@ -178,6 +229,9 @@ public class ExecutionStatisticsTests
         Assert.AreEqual(TimeSpan.FromSeconds(10), stats.TotalDuration);
     }
 
+        /// <summary>
+    /// Verifies that formatted statistics text includes key metrics.
+    /// </summary>
     [TestMethod]
     public void ToString_ContainsKeyMetrics()
     {

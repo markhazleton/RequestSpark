@@ -1,5 +1,8 @@
 namespace RequestSpark.Domain.Tests.Models;
 
+/// <summary>
+/// Tests for <see cref="CompareRunner"/> defaults, validation, and test-count calculation.
+/// </summary>
 [TestClass]
 public class CompareRunnerTests
 {
@@ -9,6 +12,9 @@ public class CompareRunnerTests
     private static CompareRequest ValidRequest() =>
         new() { Path = "api/test" };
 
+        /// <summary>
+    /// Verifies that the default constructor initializes collections and session data.
+    /// </summary>
     [TestMethod]
     public void CompareRunner_DefaultConstructor_CreatesInstance()
     {
@@ -21,6 +27,9 @@ public class CompareRunnerTests
         Assert.IsNotNull(runner.SessionId);
     }
 
+        /// <summary>
+    /// Verifies that a runner with one valid instance and request is valid.
+    /// </summary>
     [TestMethod]
     public void IsValid_WithInstanceAndRequest_ReturnsTrue()
     {
@@ -31,6 +40,9 @@ public class CompareRunnerTests
         Assert.IsTrue(runner.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that a runner without instances is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_NoInstances_ReturnsFalse()
     {
@@ -40,6 +52,9 @@ public class CompareRunnerTests
         Assert.IsFalse(runner.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that a runner without requests is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_NoRequests_ReturnsFalse()
     {
@@ -49,6 +64,9 @@ public class CompareRunnerTests
         Assert.IsFalse(runner.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that a runner with an invalid instance is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_InvalidInstance_ReturnsFalse()
     {
@@ -59,6 +77,9 @@ public class CompareRunnerTests
         Assert.IsFalse(runner.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that one instance, request, and user produces one total test.
+    /// </summary>
     [TestMethod]
     public void GetTotalTestCount_OneEach_ReturnsOne()
     {
@@ -70,6 +91,9 @@ public class CompareRunnerTests
         Assert.AreEqual(1, runner.GetTotalTestCount());
     }
 
+        /// <summary>
+    /// Verifies that total test count multiplies instances, requests, and users.
+    /// </summary>
     [TestMethod]
     public void GetTotalTestCount_MultipleInstances_MultipliesCorrectly()
     {
@@ -84,6 +108,9 @@ public class CompareRunnerTests
         Assert.AreEqual(4, runner.GetTotalTestCount());
     }
 
+        /// <summary>
+    /// Verifies that a runner with no users still uses a single-user multiplier.
+    /// </summary>
     [TestMethod]
     public void GetTotalTestCount_NoUsers_UsesSingleUserMultiplier()
     {
@@ -95,6 +122,9 @@ public class CompareRunnerTests
         Assert.AreEqual(1, runner.GetTotalTestCount());
     }
 
+        /// <summary>
+    /// Verifies that the default iteration count is 100.
+    /// </summary>
     [TestMethod]
     public void DefaultIterations_Is100()
     {
@@ -103,6 +133,9 @@ public class CompareRunnerTests
         Assert.AreEqual(100, runner.Iterations);
     }
 
+        /// <summary>
+    /// Verifies that the default maximum concurrency is 10.
+    /// </summary>
     [TestMethod]
     public void DefaultMaxConcurrency_Is10()
     {

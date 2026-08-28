@@ -1,8 +1,14 @@
 namespace RequestSpark.Web.Tests.Services;
 
+/// <summary>
+/// Tests for <see cref="EmployeeDtoValidator"/> validation rules.
+/// </summary>
 [TestClass]
 public class EmployeeDtoValidatorTests
 {
+        /// <summary>
+    /// Verifies that a complete employee DTO returns no validation errors.
+    /// </summary>
     [TestMethod]
     public void Validate_WithValidEmployee_ReturnsNoErrors()
     {
@@ -23,6 +29,9 @@ public class EmployeeDtoValidatorTests
         Assert.AreEqual(0, errors.Count);
     }
 
+        /// <summary>
+    /// Verifies that missing required employee fields return validation errors.
+    /// </summary>
     [TestMethod]
     public void Validate_WithMissingRequiredFields_ReturnsErrors()
     {

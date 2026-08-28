@@ -2,9 +2,15 @@ using Moq;
 
 namespace RequestSpark.Web.Tests.Controllers;
 
+/// <summary>
+/// Tests for <see cref="RunnerController"/> dashboard actions.
+/// </summary>
 [TestClass]
 public class RunnerControllerTests
 {
+        /// <summary>
+    /// Verifies that the dashboard index action returns a populated dashboard view model.
+    /// </summary>
     [TestMethod]
     public async Task Index_ReturnsDashboardViewModel()
     {

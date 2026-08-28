@@ -1,8 +1,14 @@
 namespace RequestSpark.Domain.Tests.Models;
 
+/// <summary>
+/// Tests for <see cref="CompareInstance"/> validation and value normalization.
+/// </summary>
 [TestClass]
 public class CompareInstanceTests
 {
+        /// <summary>
+    /// Verifies that an instance formats its name and URL in <see cref="object.ToString"/>.
+    /// </summary>
     [TestMethod]
     public void ToString_WithNameAndUrl_ReturnsFormattedString()
     {
@@ -17,6 +23,9 @@ public class CompareInstanceTests
         Assert.AreEqual("Production:https://www.controlorigins.com", result);
     }
 
+        /// <summary>
+    /// Verifies that an instance with a name and base URL is valid.
+    /// </summary>
     [TestMethod]
     public void IsValid_WithNameAndBaseUrl_ReturnsTrue()
     {
@@ -29,6 +38,9 @@ public class CompareInstanceTests
         Assert.IsTrue(instance.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that an instance without a name is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_MissingName_ReturnsFalse()
     {
@@ -37,6 +49,9 @@ public class CompareInstanceTests
         Assert.IsFalse(instance.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that an instance without a base URL is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_MissingBaseUrl_ReturnsFalse()
     {
@@ -45,6 +60,9 @@ public class CompareInstanceTests
         Assert.IsFalse(instance.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that an instance without required fields is invalid.
+    /// </summary>
     [TestMethod]
     public void IsValid_BothMissing_ReturnsFalse()
     {
@@ -53,6 +71,9 @@ public class CompareInstanceTests
         Assert.IsFalse(instance.IsValid());
     }
 
+        /// <summary>
+    /// Verifies that assigning an invalid base URL throws an exception.
+    /// </summary>
     [TestMethod]
     public void BaseUrl_InvalidUrl_ThrowsArgumentException()
     {
@@ -64,6 +85,9 @@ public class CompareInstanceTests
         catch (ArgumentException) { }
     }
 
+        /// <summary>
+    /// Verifies that assigning a valid absolute base URL stores the value.
+    /// </summary>
     [TestMethod]
     public void BaseUrl_ValidAbsoluteUrl_Stores()
     {
@@ -72,6 +96,9 @@ public class CompareInstanceTests
         Assert.AreEqual("https://example.com/", instance.BaseUrl);
     }
 
+        /// <summary>
+    /// Verifies that whitespace-only names are stored as null.
+    /// </summary>
     [TestMethod]
     public void Name_WhitespaceOnly_StoresNull()
     {
@@ -80,6 +107,9 @@ public class CompareInstanceTests
         Assert.IsNull(instance.Name);
     }
 
+        /// <summary>
+    /// Verifies that names are trimmed before storage.
+    /// </summary>
     [TestMethod]
     public void Name_WithWhitespace_IsTrimmed()
     {
